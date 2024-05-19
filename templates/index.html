@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Cat and Dog</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Random Cat, Dog, and Rabbit</title>
     <style>
         .container {
             display: flex;
@@ -25,7 +24,7 @@
     </style>
 </head>
 <body>
-    <h1>Random Cat and Dog</h1>
+    <h1>Random Cat, Dog, and Rabbit</h1>
     <div class="container">
         <div class="image-container">
             <h2>Random Cat</h2>
@@ -51,6 +50,14 @@
             <audio id="dog-sound2" src="{{ url_for('static', filename='sounds/dog_sound2.mp3') }}"></audio>
             <audio id="dog-sound3" src="{{ url_for('static', filename='sounds/dog_sound3.mp3') }}"></audio>
         </div>
+        <div class="image-container">
+            <h2>Random Rabbit</h2>
+            <img id="rabbit-image" src="{{ rabbit_image_url }}" alt="Random Rabbit">
+            <p>
+                <button onclick="refreshRabbit()">Get another rabbit</button>
+                <button onclick="downloadImage('{{ rabbit_image_url }}')">Download</button>
+            </p>
+        </div>
     </div>
 
     <script>
@@ -67,6 +74,14 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('dog-image').src = data.dog_image_url;
+                });
+        }
+
+        function refreshRabbit() {
+            fetch('/get-rabbit')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('rabbit-image').src = data.rabbit_image_url;
                 });
         }
 
