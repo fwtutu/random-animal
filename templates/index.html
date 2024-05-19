@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Cat and Dog</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .image-container {
+            margin: 20px;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 500px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Cat and Dog</h1>
+    <div class="container">
+        <div class="image-container">
+            <h2>Random Cat</h2>
+            <img id="cat-image" src="{{ cat_image_url }}" alt="Random Cat">
+            <p>
+                <button onclick="refreshCat()">Get another cat</button>
+                <button onclick="downloadImage('{{ cat_image_url }}')">Download</button>
+                <button onclick="playRandomCatSound()">Play Sound</button>
+            </p>
+            <audio id="cat-sound1" src="{{ url_for('static', filename='sounds/cat_sound1.mp3') }}"></audio>
+            <audio id="cat-sound2" src="{{ url_for('static', filename='sounds/cat_sound2.mp3') }}"></audio>
+            <audio id="cat-sound3" src="{{ url_for('static', filename='sounds/cat_sound3.mp3') }}"></audio>
+        </div>
+        <div class="image-container">
+            <h2>Random Dog</h2>
+            <img id="dog-image" src="{{ dog_image_url }}" alt="Random Dog">
+            <p>
+                <button onclick="refreshDog()">Get another dog</button>
+                <button onclick="downloadImage('{{ dog_image_url }}')">Download</button>
+                <button onclick="playRandomDogSound()">Play Sound</button>
+            </p>
+            <audio id="dog-sound1" src="{{ url_for('static', filename='sounds/dog_sound1.mp3') }}"></audio>
+            <audio id="dog-sound2" src="{{ url_for('static', filename='sounds/dog_sound2.mp3') }}"></audio>
+            <audio id="dog-sound3" src="{{ url_for('static', filename='sounds/dog_sound3.mp3') }}"></audio>
+        </div>
+    </div>
+
+    <script>
+        function refreshCat() {
+            fetch('/get-cat')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('cat-image').src = data.cat_image_url;
+                });
+        }
+
+        function refreshDog() {
+            fetch('/get-dog')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('dog-image').src = data.dog_image_url;
+                });
+        }
+
+        function downloadImage(url) {
+            window.location.href = '/download-image?url=' + encodeURIComponent(url);
+        }
+
+        function playRandomCatSound() {
+            const catSounds = [
+                document.getElementById('cat-sound1'),
+                document.getElementById('cat-sound2'),
+                document.getElementById('cat-sound3')
+            ];
+            const randomSound = catSounds[Math.floor(Math.random() * catSounds.length)];
+            randomSound.play();
+        }
+
+        function playRandomDogSound() {
+            const dogSounds = [
+                document.getElementById('dog-sound1'),
+                document.getElementById('dog-sound2'),
+                document.getElementById('dog-sound3')
+            ];
+            const randomSound = dogSounds[Math.floor(Math.random() * dogSounds.length)];
+            randomSound.play();
+        }
+    </script>
+</body>
+</html>
