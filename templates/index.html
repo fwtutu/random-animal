@@ -4,19 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Cat, Dog, and Rabbit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
         .image-container {
             margin: 20px;
             text-align: center;
         }
         .image-container img {
-            max-width: 500px;
+            max-width: 100%;
             border: 1px solid #ddd;
             border-radius: 4px;
             padding: 5px;
@@ -24,41 +19,51 @@
     </style>
 </head>
 <body>
-    <h1>Random Cat, Dog, and Rabbit</h1>
-    <div class="container">
-        <div class="image-container">
-            <h2>Random Cat</h2>
-            <img id="cat-image" src="{{ cat_image_url }}" alt="Random Cat">
-            <p>
-                <button onclick="refreshCat()">Get another cat</button>
-                <button onclick="downloadImage('{{ cat_image_url }}')">Download</button>
-                <button onclick="playRandomCatSound()">Play Sound</button>
-            </p>
-            <audio id="cat-sound1" src="{{ url_for('static', filename='sounds/cat_sound1.mp3') }}"></audio>
-            <audio id="cat-sound2" src="{{ url_for('static', filename='sounds/cat_sound2.mp3') }}"></audio>
-            <audio id="cat-sound3" src="{{ url_for('static', filename='sounds/cat_sound3.mp3') }}"></audio>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">Random Cat, Dog, and Rabbit</h1>
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <div class="image-container">
+                        <h2 class="subtitle">Random Cat</h2>
+                        <img id="cat-image" src="{{ cat_image_url }}" alt="Random Cat">
+                        <p>
+                            <button class="button is-primary" onclick="refreshCat()">Get another cat</button>
+                            <button class="button is-link" onclick="downloadImage('{{ cat_image_url }}')">Download</button>
+                            <button class="button is-info" onclick="playRandomCatSound()">Play Sound</button>
+                        </p>
+                        <audio id="cat-sound1" src="{{ url_for('static', filename='sounds/cat_sound1.mp3') }}"></audio>
+                        <audio id="cat-sound2" src="{{ url_for('static', filename='sounds/cat_sound2.mp3') }}"></audio>
+                        <audio id="cat-sound3" src="{{ url_for('static', filename='sounds/cat_sound3.mp3') }}"></audio>
+                    </div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="image-container">
+                        <h2 class="subtitle">Random Dog</h2>
+                        <img id="dog-image" src="{{ dog_image_url }}" alt="Random Dog">
+                        <p>
+                            <button class="button is-primary" onclick="refreshDog()">Get another dog</button>
+                            <button class="button is-link" onclick="downloadImage('{{ dog_image_url }}')">Download</button>
+                            <button class="button is-info" onclick="playRandomDogSound()">Play Sound</button>
+                        </p>
+                        <audio id="dog-sound1" src="{{ url_for('static', filename='sounds/dog_sound1.mp3') }}"></audio>
+                        <audio id="dog-sound2" src="{{ url_for('static', filename='sounds/dog_sound2.mp3') }}"></audio>
+                        <audio id="dog-sound3" src="{{ url_for('static', filename='sounds/dog_sound3.mp3') }}"></audio>
+                    </div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="image-container">
+                        <h2 class="subtitle">Random Rabbit</h2>
+                        <img id="rabbit-image" src="{{ rabbit_image_url }}" alt="Random Rabbit">
+                        <p>
+                            <button class="button is-primary" onclick="refreshRabbit()">Get another rabbit</button>
+                            <button class="button is-link" onclick="downloadImage('{{ rabbit_image_url }}')">Download</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="image-container">
-            <h2>Random Dog</h2>
-            <img id="dog-image" src="{{ dog_image_url }}" alt="Random Dog">
-            <p>
-                <button onclick="refreshDog()">Get another dog</button>
-                <button onclick="downloadImage('{{ dog_image_url }}')">Download</button>
-                <button onclick="playRandomDogSound()">Play Sound</button>
-            </p>
-            <audio id="dog-sound1" src="{{ url_for('static', filename='sounds/dog_sound1.mp3') }}"></audio>
-            <audio id="dog-sound2" src="{{ url_for('static', filename='sounds/dog_sound2.mp3') }}"></audio>
-            <audio id="dog-sound3" src="{{ url_for('static', filename='sounds/dog_sound3.mp3') }}"></audio>
-        </div>
-        <div class="image-container">
-            <h2>Random Rabbit</h2>
-            <img id="rabbit-image" src="{{ rabbit_image_url }}" alt="Random Rabbit">
-            <p>
-                <button onclick="refreshRabbit()">Get another rabbit</button>
-                <button onclick="downloadImage('{{ rabbit_image_url }}')">Download</button>
-            </p>
-        </div>
-    </div>
+    </section>
 
     <script>
         function refreshCat() {
