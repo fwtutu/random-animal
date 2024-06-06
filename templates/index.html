@@ -5,18 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Cat, Dog, and Rabbit</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <style>
-        .image-container {
-            margin: 20px;
-            text-align: center;
-        }
-        .image-container img {
-            max-width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
     <section class="section">
@@ -30,7 +20,7 @@
                         <p>
                             <button class="button is-primary" onclick="refreshCat()">Get another cat</button>
                             <button class="button is-link" onclick="downloadImage('{{ cat_image_url }}')">Download</button>
-                            <button class="button is-info" onclick="playRandomCatSound()">Play Sound</button>
+                            <button id="sound-button" class="sound-button" onclick="playRandomCatSound()"></button>
                         </p>
                         <audio id="cat-sound1" src="{{ url_for('static', filename='sounds/cat_sound1.mp3') }}"></audio>
                         <audio id="cat-sound2" src="{{ url_for('static', filename='sounds/cat_sound2.mp3') }}"></audio>
@@ -44,7 +34,7 @@
                         <p>
                             <button class="button is-primary" onclick="refreshDog()">Get another dog</button>
                             <button class="button is-link" onclick="downloadImage('{{ dog_image_url }}')">Download</button>
-                            <button class="button is-info" onclick="playRandomDogSound()">Play Sound</button>
+                            <button id="sound-button" class="sound-button" onclick="playRandomDogSound()"></button>
                         </p>
                         <audio id="dog-sound1" src="{{ url_for('static', filename='sounds/dog_sound1.mp3') }}"></audio>
                         <audio id="dog-sound2" src="{{ url_for('static', filename='sounds/dog_sound2.mp3') }}"></audio>

@@ -1,0 +1,25 @@
+.image-container {
+    margin: 20px;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.sound-button {
+    width: 30px; /* 按鈕的寬度 */
+    height: 30px; /* 按鈕的高度 */
+    border: none; /* 移除按鈕邊框 */
+    background: url('sound.png') no-repeat center center; /* 設置按鈕的背景圖像 */
+    background-size: cover; /* 背景圖像覆蓋整個按鈕 */
+    cursor: pointer; /* 使按鈕有點擊效果 */
+    margin-top: 6px; /* 添加上邊距，使按鈕往下移 */
+}
+
+.sound-button:hover {
+    opacity: 0.8; /* 鼠標懸停效果 */
+}
