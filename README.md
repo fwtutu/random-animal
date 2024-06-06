@@ -32,4 +32,5 @@
 
 4. 打開瀏覽器並導航至 `http://127.0.0.1:5000`.
 
+![image](https://github.com/fwtutu/random-animal/assets/171393477/840e91eb-ab1b-4ced-a107-2c25edb85695)
 
